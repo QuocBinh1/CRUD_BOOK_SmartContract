@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: center; /* Căn giữa theo chiều ngang */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+    padding: 8px; /* Khoảng cách trong ô */
+}
+
+th {
+    background-color: #f2f2f2; /* Màu nền tiêu đề */
+}
+
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* Form dùng Grid để căn chỉnh */
+#bookForm {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Label chiếm 1 phần, Input chiếm 2 phần */
+    gap: 15px 10px; /* Khoảng cách giữa các hàng và cột */
+    align-items: center; /* Căn giữa theo trục dọc */
+}
+
+#bookForm label {
+    text-align: left; /* Label căn phải */
+    padding-right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#bookForm input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#saveButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+#cancelButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
