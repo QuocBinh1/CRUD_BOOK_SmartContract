@@ -1,3 +1,4 @@
+//wallet.js
 function getWalletInfo() {
     const web3 = new Web3(window.ethereum);
     web3.eth.getAccounts().then(accounts => {
@@ -9,5 +10,5 @@ function getWalletInfo() {
         walletBalance.innerHTML = web3.utils.fromWei(balance, 'ether');
       });
     });
-  }
+}
   

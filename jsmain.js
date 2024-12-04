@@ -1,4 +1,4 @@
-// Select elements
+// jsmain.js
 const addButton = document.getElementById("addButton");
 const bookModal = document.getElementById("bookModal");
 const closeModal = document.getElementById("closeModal");

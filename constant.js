@@ -1,39 +1,6 @@
 //constant.js
-CONTRACT_ADDRESS = "0xfdbD633398cA5144708618cb94F97B922fA85d8E";
-CONTRACT_ABI =[
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "book_id",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "title",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "author",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "year",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "price",
-				"type": "uint256"
-			}
-		],
-		"name": "addBook",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
+CONTRACT_ADDRESS = "0x9f484A1Bd176ff6305f3Ea77Ea6f982E0364C559";
+CONTRACT_ABI = [
 	{
 		"anonymous": false,
 		"inputs": [
@@ -109,27 +76,29 @@ CONTRACT_ABI =[
 				"internalType": "string",
 				"name": "book_id",
 				"type": "string"
-			}
-		],
-		"name": "deleteBook",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
+			},
 			{
 				"internalType": "string",
-				"name": "book_id",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "author",
 				"type": "string"
 			},
 			{
 				"internalType": "uint256",
-				"name": "new_price",
+				"name": "year",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
 				"type": "uint256"
 			}
 		],
-		"name": "updatePrice",
+		"name": "addBook",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -200,74 +169,9 @@ CONTRACT_ABI =[
 				"type": "string"
 			}
 		],
-		"name": "findBookById",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "title",
-				"type": "string"
-			}
-		],
-		"name": "findBookByTitle",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
+		"name": "deleteBook",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -311,6 +215,3 @@ CONTRACT_ABI =[
 		"type": "function"
 	}
 ]
-
-// const web3 = new Web3(window.ethereum);
-// const contractInstance = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
