@@ -1,6 +1,39 @@
 //constant.js
-CONTRACT_ADDRESS = "0x9f484A1Bd176ff6305f3Ea77Ea6f982E0364C559";
-CONTRACT_ABI = [
+CONTRACT_ADDRESS = "0x9F47120C013FA226ee3FdAB4ea550d261caf8aD9";
+CONTRACT_ABI =[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "book_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "author",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "year",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"name": "addBook",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"anonymous": false,
 		"inputs": [
@@ -62,13 +95,44 @@ CONTRACT_ABI = [
 			},
 			{
 				"indexed": false,
+				"internalType": "string",
+				"name": "new_title",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "new_author",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "new_year",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
 				"internalType": "uint256",
 				"name": "new_price",
 				"type": "uint256"
 			}
 		],
-		"name": "BookPriceUpdated",
+		"name": "BookUpdated",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "book_id",
+				"type": "string"
+			}
+		],
+		"name": "deleteBook",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -79,26 +143,26 @@ CONTRACT_ABI = [
 			},
 			{
 				"internalType": "string",
-				"name": "title",
+				"name": "new_title",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
-				"name": "author",
+				"name": "new_author",
 				"type": "string"
 			},
 			{
 				"internalType": "uint256",
-				"name": "year",
+				"name": "new_year",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "price",
+				"name": "new_price",
 				"type": "uint256"
 			}
 		],
-		"name": "addBook",
+		"name": "updateBook",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -159,19 +223,6 @@ CONTRACT_ABI = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "book_id",
-				"type": "string"
-			}
-		],
-		"name": "deleteBook",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

@@ -31,7 +31,7 @@ contract Exam2 {
     mapping(string => uint) public bookIdToIndex;
 
     event BookAdded(string book_id, string title, string author, uint year, uint price);
-    event BookPriceUpdated(string book_id, uint new_price);
+    event BookUpdated(string book_id, string new_title, string new_author, uint new_year, uint new_price);
     event BookDeleted(string book_id);
 
     function addBook(string memory book_id, string memory title, string memory author, uint year, uint price) public {
@@ -46,29 +46,8 @@ contract Exam2 {
         books.push(Book(book_id, title, author, year, price));
         bookIdToIndex[book_id] = books.length;
         emit BookAdded(book_id, title, author, year, price);
-}
-
-    function updatePrice(string memory book_id, uint new_price) public {
-        uint index = bookIdToIndex[book_id] - 1; // Lấy chỉ số của sách
-        require(index >= 0 && index < books.length, "khong tim thay sach");
-        books[index].price = new_price;
-        emit BookPriceUpdated(book_id, new_price);
     }
-    function findBookById(string memory book_id) public view returns (string memory, string memory, string memory, uint, uint) {
-        uint index = bookIdToIndex[book_id] - 1;
-        require(index >= 0 && index < books.length, "Khong tim thay sach");
-        Book memory book = books[index];
-        return (book.book_id, book.title, book.author, book.year, book.price);
-    }
-
-    function findBookByTitle(string memory title) public view returns (string memory, string memory, string memory, uint, uint) {
-        for (uint i = 0; i < books.length; i++) {
-            if (keccak256(bytes(books[i].title)) == keccak256(bytes(title))) {
-                return (books[i].book_id, books[i].title, books[i].author, books[i].year, books[i].price);
-            }
-        }
-        revert("Khong tim thay sach");
-    }
+    
     function deleteBook(string memory book_id) public {
         uint index = bookIdToIndex[book_id] - 1;
         require(index >= 0 && index < books.length, "Khong tim thay sach");
@@ -77,7 +56,40 @@ contract Exam2 {
         bookIdToIndex[book_id] = 0; 
         emit BookDeleted(book_id);
     }
+    function updateBook(string memory book_id,string memory new_title,string memory new_author,uint new_year,uint new_price) public {
+        uint index = bookIdToIndex[book_id] - 1; // Lấy chỉ số của sách
+        require(index >= 0 && index < books.length, "Khong tim thay sach");
+        require(bytes(new_title).length > 0, "Title cannot be empty");
+        require(bytes(new_author).length > 0, "Author cannot be empty");
+        require(new_year > 0, "Year must be greater than 0");
+        require(new_price > 0, "Price must be greater than 0");
+
+        books[index].title = new_title;
+        books[index].author = new_author;
+        books[index].year = new_year;
+        books[index].price = new_price;
+
+        emit BookUpdated(book_id, new_title, new_author, new_year, new_price);
+    }
+
     function showAllBooks() public view returns (Book[] memory) {
         return books;
     }
+    // function findBookById(string memory book_id) public view returns (string memory, string memory, string memory, uint, uint) {
+    //     uint index = bookIdToIndex[book_id] - 1;
+    //     require(index >= 0 && index < books.length, "Khong tim thay sach");
+    //     Book memory book = books[index];
+    //     return (book.book_id, book.title, book.author, book.year, book.price);
+    // }
+
+    // function findBookByTitle(string memory title) public view returns (string memory, string memory, string memory, uint, uint) {
+    //     for (uint i = 0; i < books.length; i++) {
+    //         if (keccak256(bytes(books[i].title)) == keccak256(bytes(title))) {
+    //             return (books[i].book_id, books[i].title, books[i].author, books[i].year, books[i].price);
+    //         }
+    //     }
+    //     revert("Khong tim thay sach");
+    // }
+    
+    
 }

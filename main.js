@@ -22,7 +22,6 @@ connectButton.addEventListener("click", async () => {
     console.log("Non-Ethereum browser detected. You should consider trying MetaMask!");
   }
 });
-
 // Hiển thị tất cả sách
 showallButton.addEventListener("click", async () => {
   if (window.web3) {
@@ -67,6 +66,7 @@ showallButton.addEventListener("click", async () => {
       });
 
       // Tạo nút xóa
+      // mình tạo nút xóa , và cho nút đó cái id = book_id để khi click vào nút xóa thì mình sẽ lấy cái id đó để xóa sách
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "Delete";
       deleteButton.id = `delete-${book_id}`;
@@ -79,7 +79,6 @@ showallButton.addEventListener("click", async () => {
     booklist.appendChild(table);
   }
 });
-
 // Thêm sách
 addBookButton.addEventListener("click", async () => {
   if (window.web3) {
@@ -97,16 +96,43 @@ addBookButton.addEventListener("click", async () => {
       alert("Vui lòng nhập đầy đủ thông tin!");
       return;
     }
-
+// cái hàm add mình có sửa ở mấy ngày trước , tuy nhiên kh để ý đến khí gas nên k add đc sách , giờ mình sửa lại ở đây
     try {
-      await contract.methods.addBook(id, title, author, year, price).send({ from: accounts[0], gas: 3000000 });
+      const gasPrice = await web3.eth.getGasPrice(); 
+      await contract.methods.addBook(id, title, author, year, price).send({ from: accounts[0], gas: 9000000 , gasPrice: gasPrice});
       alert("Thêm sách thành công!");
+      showAllBooks();
+
     } catch (error) {
       alert("Có lỗi xảy ra khi thêm sách!");
       console.log(error);
     }
   }
 });
+// Cập nhật sách
+const handUpdate = async (book_id, title, author, year, price) => {
+  const newTitle = prompt("Nhập tiêu đề mới", title);
+  const newAuthor = prompt("Nhập tác giả mới", author);
+  const newYear = prompt("Nhập năm xuất bản mới", year);
+  const newPrice = prompt("Nhập giá mới", price);
+
+  if (newTitle && newAuthor && newYear && newPrice) {
+    if (window.ethereum) {
+      try {
+        web3 = new Web3(web3.currentProvider);    
+        contract = await contract_instance(web3, CONTRACT_ABI, CONTRACT_ADDRESS);
+        const accounts = await web3.eth.getAccounts();
+        const gasPrice = await web3.eth.getGasPrice(); 
+        await contract.methods.updateBook(book_id, newTitle, newAuthor, newYear, newPrice).send({ from: accounts[0], gas: 9000000, gasPrice: gasPrice });
+        alert("Sách đã được cập nhật thành công!");
+        showAllBooks();
+      } catch (error) {
+        alert("Có lỗi xảy ra khi cập nhật sách!");
+        console.error(error);
+      }
+    }
+  }
+}; 
 
 // Xóa sách
 const handleDelete = async (book_id) => {
@@ -127,15 +153,6 @@ const handleDelete = async (book_id) => {
     }
   }
 };
-// Cập nhật sách
-const handUpdate = async(book_id, title, author, year, price) => {
-  
-};
-
-
-
-
-
 
 
 // Cập nhật lại danh sách sách
